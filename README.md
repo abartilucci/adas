@@ -141,7 +141,8 @@ Il programma è eseguibile in due modalità, NORMALE ed ARTIFICIALE. Le due moda
 Nel caso della modalità di avvio NORMALE: i componenti forward facing radar, park assist, surround view cameras, blind spot, leggono i dati da /dev/random e /dev/urandom come specificato nel testo del progetto.
 
 Nel caso della modalità di avvio ARTIFICIALE: i componenti forward facing radar, park assist, surround view cameras, blind spot leggono i dati:
-    • Invece che da /dev/urandom, dal file urandomARTIFICIALE.binary 
-    • Invece che da /dev/random, dal file randomARTIFICIALE.binary
+
+    - Invece che da /dev/urandom, dal file urandomARTIFICIALE.binary 
+    - Invece che da /dev/random, dal file randomARTIFICIALE.binary
     
 **Facoltativo.** Utilizzare un’unica shell per lanciare l’intero progetto.
