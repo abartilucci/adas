@@ -14,7 +14,7 @@ I componenti si dividono in Human-Machine Interface, Sensori, Attuatori, Central
     - Componente steer-by-wire
     - Componente throttle control
     - Componente brake-by-wire
-- **Sensori
+- **Sensori**
     - Componente front windshield camera
     - Componente forward facing radar(facoltativo)
     - Componente park assist
@@ -23,7 +23,7 @@ I componenti si dividono in Human-Machine Interface, Sensori, Attuatori, Central
 - Componente Central ECU
 
 
-##*Componente Human-Machine Interface.*
+##*Componente Human-Machine Interface.*##
 Questo componente interagisce con la Central ECU, per mostrare a video, come output, quanto comunicato dalla Central ECU, e per inviare input ricevuti dall’utente tramite la tastiera.
 
 Il componente è realizzato tramite due terminali. Un terminale è utilizzato solo per mostrare i valori di output (terminale di output), mentre l’altro terminale (terminale di input) è utilizzato solo per raccogliere e inviare input alla Central CPU.
