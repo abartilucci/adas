@@ -9,8 +9,8 @@ Dove non specificato con il termine facoltativo, i requisiti definiti hanno cara
 Il sistema comprende vari componenti, che mostrano una specifica funzionale ed interazioni secondo quanto descritto di seguito. 
 I componenti si dividono in Human-Machine Interface, Sensori, Attuatori, Central ECU. La divisione è la seguente:
 
-- **Componente Human-Machine Interface
-- **Attuatori:
+- **Componente Human-Machine Interface**
+- **Attuatori**:
     - Componente steer-by-wire
     - Componente throttle control
     - Componente brake-by-wire
