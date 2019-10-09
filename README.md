@@ -1,5 +1,8 @@
 **_Purposes_** : this project is a simplified representation inspired by interactions between sensors, ECU and HMI in an ADAS System made for the OS Lab of University of Florence Computer Science graduate course for year 2019/2020.
 
+Feel free to contribute with ideas and opinions, it will be great!
+And if this works helps someone I would be glad if you would share it with me.
+Have fun!
 
 
 # ADAS made trivial: rappresentazione ispirata alle interazioni in un sistema di guida autonoma
