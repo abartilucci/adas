@@ -41,9 +41,9 @@ Gli input possibili, che l’utente può digitare sul terminale di input, sono:
 - “INIZIO”: avvia il veicolo verso la sua destinazione
 - “PARCHEGGIO”: si attiva la procedura di parcheggio, che conclude il percorso.
  
-**Suggerimento** Per semplicità, il processo di output può essere realizzato come un processo che legge continuamente dal file di log della Central ECU.
+**Suggerimento.** Per semplicità, il processo di output può essere realizzato come un processo che legge continuamente dal file di log della Central ECU.
 
-**Facoltativo** E’ possibile arricchire l’output con ulteriori stampe a video, al fine di migliorare la leggibilità delle informazioni visualizzate.
+**Facoltativo.** E’ possibile arricchire l’output con ulteriori stampe a video, al fine di migliorare la leggibilità delle informazioni visualizzate.
 
 
 ### _Componente steer-by-wire_ ### 
@@ -57,7 +57,7 @@ Questo componente riceve il comando di accelerazione dalla Central ECU, nel form
 
 Ogni secondo, il componente stampa nel file di log throttle.log: “NO ACTION”, oppure “AUMENTO 5”, sulla base dell’azione in corso.
 
-**Facoltativo** Per ogni secondo di accelerazione, c’è una probabilità di 10-5 che l’acceleratore fallisca. In tal caso, il componente throttle control invia un segnale alla Central ECU per evidenziare tale evento, e l’accelerazione in corso è annullata.
+**Facoltativo.** Per ogni secondo di accelerazione, c’è una probabilità di 10-5 che l’acceleratore fallisca. In tal caso, il componente throttle control invia un segnale alla Central ECU per evidenziare tale evento, e l’accelerazione in corso è annullata.
 
 
 ### _Componente brake-by-wire_ ###
@@ -66,7 +66,7 @@ Il componente riceve dalla Central ECU il comando di decelerazione o un segnale 
 
 Se il componente riceve il segnale di pericolo dalla Central ECU, arresta l’auto (azione istantanea). Questo equivale a scrivere “ARRESTO AUTO” nel file di log brake.log.
 
-**Nota** Per facilitare la realizzazione, le caratteristiche dell’input sono tali che non possono arrivare comandi contrastanti. Ad esempio, mentre si sta effettuando una variazione di direzione, non arriveranno comandi di sterzo nella direzione opposta. Un simile ragionamento vale per accelerazione e decelerazione.
+**Nota.** Per facilitare la realizzazione, le caratteristiche dell’input sono tali che non possono arrivare comandi contrastanti. Ad esempio, mentre si sta effettuando una variazione di direzione, non arriveranno comandi di sterzo nella direzione opposta. Un simile ragionamento vale per accelerazione e decelerazione.
 
 
 ### _Componente front windshield camera_ ### 
@@ -80,9 +80,9 @@ Il componente iterativamente legge i dati da una sorgente e li invia alla Centra
 ### _Componente park assist_ ### 
 Quando il componente riceve un comando di attivazione da parte della Central ECU, per la durata di 30 secondi, legge iterativamente una volta al secondo 4 byte da /dev/urandom e li invia alla Central ECU. I dati inviati sono registrati nel file di log assist.log.
 
-**Facoltativo** Quando si attiva l’interazione con park assist, la Central ECU sospende (o rimuove) tutti I sensori e attuatori, tranne park assist e surround view cameras.
+**Facoltativo.** Quando si attiva l’interazione con park assist, la Central ECU sospende (o rimuove) tutti I sensori e attuatori, tranne park assist e surround view cameras.
    
-**Facoltativo** 
+**Facoltativo.** 
 Il componente Park assist non è generato all’avvio del Sistema, ma creato dalla Central ECU al bisogno.
 
 
@@ -93,7 +93,7 @@ Il componente agisce solo quando park assist è attivo. Finchè park assist è a
 ### _Componente blind spot (facoltativo)_ ###
 Il componente agisce solo su richiesta della Central ECU. Quando si effettua una curva a destra o sinistra, per l’intera durata della sterzata, iterativamente legge ogni 0.5 secondi 8 bytes da /dev/urandom e li invia alla Central ECU. dati inviati sono registrati nel file di log spot.log.
 
-**Facoltativo**. Blind Spot cameras può essere costamente in attesa di un segnale direttamente da steer-by- wire, invece che di una richiesta dalla Central ECU.
+**Facoltativo.**. Blind Spot cameras può essere costamente in attesa di un segnale direttamente da steer-by- wire, invece che di una richiesta dalla Central ECU.
 
 
 ### _Componente Central ECU_ ### 
@@ -112,7 +112,7 @@ Per ciascuna informazione ricevuta da front windshield camera, la Central ECU ef
 In seguito all’esecuzione di un segnale di pericolo, la Central ECU imposta la velocità a zero. E’ quindi
 necessario che l’utente digiti nuovamente INIZIO, per proseguire il percorso.
 
-**Facoltativo** I dati ricevuti da Forward facing radar sono continuamente analizzati e raccolti: se i valori raccolti contengono almeno uno tra i valori i) 0xA00F; ii) 0xB072; iii) 0x2FA8; iv) 0x8359; v) 0xCE23, allora la Central ECU invia un segnale di pericolo a brake-by-wire.
+**Facoltativo.** I dati ricevuti da Forward facing radar sono continuamente analizzati e raccolti: se i valori raccolti contengono almeno uno tra i valori i) 0xA00F; ii) 0xB072; iii) 0x2FA8; iv) 0x8359; v) 0xCE23, allora la Central ECU invia un segnale di pericolo a brake-by-wire.
 
 
 Se il comando ricevuto dalla HMI è invece “PARCHEGGIO”, la Central ECU comunica l’arresto del veicolo a brake-by-wire.
@@ -120,13 +120,13 @@ Se il comando ricevuto dalla HMI è invece “PARCHEGGIO”, la Central ECU comu
 
 Quando la velocità raggiunge 0, Central ECU attiva Park assist ultrasonic sensors e Surround view cameras. Se la Central ECU non riceve da nessuno dei due, per 30 secondi, uno dei valori: i) 0x172A, ii) 0xD693, iii) 0x, iv) 0xBDD8, v) 0xFAEE, vi) 0x4300, l’auto è parcheggiata e la missione termina. Altrimenti, la Central ECU ri- avvia la procedura di PARCHEGGIO, attivando attiva Park assist ultrasonic sensors e Surround view cameras.
   
-**Nota** Surround view cameras è facoltativo, come già specificato sopra.
+**Nota.** Surround view cameras è facoltativo, come già specificato sopra.
 
-**Facoltativo** Il comando di PARCHEGGIO potrebbe arrivare mentre i vari attuatori stanno eseguendo ulteriori comandi (accelerare o sterzare). I vari attuatori interrompono le loro azioni, per avviare le procedure di parcheggio.
+**Facoltativo.** Il comando di PARCHEGGIO potrebbe arrivare mentre i vari attuatori stanno eseguendo ulteriori comandi (accelerare o sterzare). I vari attuatori interrompono le loro azioni, per avviare le procedure di parcheggio.
 
-**Facoltativo** Durante una sterzata, la Central ECU legge i valori di Blind spot rear radars. Se per la durata della sterzata la Central ECU non riceve nessuno dei valori i) 0x414E, ii) 0x4452, iii) 0x4C41, iv) 0x424F, v) 0x5241, vi) 0x544F, vii) 0x8359, viii) 0xA01F, ix) 0x5249, x) 0x5100, allora la sterzata termina correttamente, altrimenti si invia un segnale di pericolo a brake-by-wire.
+**Facoltativo.** Durante una sterzata, la Central ECU legge i valori di Blind spot rear radars. Se per la durata della sterzata la Central ECU non riceve nessuno dei valori i) 0x414E, ii) 0x4452, iii) 0x4C41, iv) 0x424F, v) 0x5241, vi) 0x544F, vii) 0x8359, viii) 0xA01F, ix) 0x5249, x) 0x5100, allora la sterzata termina correttamente, altrimenti si invia un segnale di pericolo a brake-by-wire.
 
-**Facoltativo** Se la Central ECU riceve il segnale di fallimento accelerazione da throttle control, imposta la velocità a 0 e invia all’output della HMI un messaggio di totale terminazione dell’esecuzione.
+**Facoltativo.** Se la Central ECU riceve il segnale di fallimento accelerazione da throttle control, imposta la velocità a 0 e invia all’output della HMI un messaggio di totale terminazione dell’esecuzione.
 Tutti i comandi inviati dalla Central ECU a qualunque componente sono inseriti in un file di log ECU.log e stampati a video tramite la HMI.
 
 ## 3. Note implementative del programma richiesto.
@@ -144,4 +144,4 @@ Nel caso della modalità di avvio ARTIFICIALE: i componenti forward facing radar
     • Invece che da /dev/urandom, dal file urandomARTIFICIALE.binary 
     • Invece che da /dev/random, dal file randomARTIFICIALE.binary
     
-**Facoltativo** Utilizzare un’unica shell per lanciare l’intero progetto.
+**Facoltativo.** Utilizzare un’unica shell per lanciare l’intero progetto.
